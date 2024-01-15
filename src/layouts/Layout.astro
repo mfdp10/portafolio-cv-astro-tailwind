@@ -1,0 +1,102 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Hola bienvenid@ a mi Portafolio Profesional hecho en Astro, soy Mauricio Di Paolo, Desarrollador Web"
+    />
+    <title>Portafolio CV - Astro</title>
+    <link rel="canonical" href="https://mfdp10.github.io/portafolio-cv-astro" />
+    <link rel="favicon" href="https://mfdp10.github.io/portafolio-cv-astro/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="https://mfdp10.github.io/portafolio-cv-astro/favicon.png" />
+    <meta name="theme-color" content="#FF8F1E" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" name="twitter:title" content="Portafolio CV - Mauricio Di Paolo" />
+    <meta
+      property="og:description"
+      name="twitter:description"
+      content="Hola bienvenid@ a mi Portafolio Profesional, soy Mauricio Di Paolo, Desarrollador Web"
+    />
+    <meta
+      property="og:image"
+      name="twitter:image"
+      content="https://mfdp10.github.io/portafolio-cv-astro/assets/hero-image-home.jpg"
+    />
+    <meta property="og:url" name="twitter:url" content="https://mfdp10.github.io/portafolio-cv-astro" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<script>
+  /* ********** Menu ********** */
+  ((d) => {
+    const $btnMenu = d.querySelector(".menu-btn"),
+      $menu = d.querySelector(".menu");
+
+    $btnMenu.addEventListener("click", (e) => {
+      $btnMenu.firstElementChild.classList.toggle("hidden");
+      $btnMenu.lastElementChild.classList.toggle("hidden");
+      $menu.classList.toggle("opacity-100");
+      $menu.classList.toggle("pointer-events-auto");
+    });
+
+    d.addEventListener("click", (e) => {
+      if (!(e.target as HTMLTextAreaElement).matches(".menu a")) return false;
+
+      $btnMenu.firstElementChild.classList.remove("hidden");
+      $btnMenu.lastElementChild.classList.add("hidden");
+      $menu.classList.remove("opacity-100");
+      $menu.classList.remove("pointer-events-auto");
+      $menu.classList.add("opacity-0");
+      $menu.classList.add("pointer-events-none");
+    });
+  })(document);
+
+  /* ********** ContactForm ********** */
+  ((d) => {
+    const $form = d.querySelector(".contact-form"),
+      $loader = d.querySelector(".contact-form-loader"),
+      $response = d.querySelector(".contact-form-response");
+
+    $form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      $loader.classList.remove("hidden");
+      fetch("https://localhost/ajax/mfdp10@gmail.com", {
+        method: "POST",
+        body: new FormData(e.target as HTMLFormElement),
+      })
+        .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+        .then((json) => {
+          console.log(json);
+          location.hash = "#gracias";
+          ($form as HTMLFormElement).reset();
+        })
+        .catch((err) => {
+          console.log(err);
+          let message = err.statusText || "Ocurrió un error al enviar, intenta nuevamente";
+          $response.querySelector("h3").innerHTML = `Error ${err.status}: ${message}`;
+        })
+        .finally(() => {
+          $loader.classList.add("hidden");
+          setTimeout(() => {
+            location.hash = "#close";
+          }, 3000);
+        });
+    });
+  })(document);
+</script>
