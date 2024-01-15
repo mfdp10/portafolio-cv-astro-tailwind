@@ -1,6 +1,6 @@
 Repositorio tipo portafolio hecho en Astro y estilizado con Tailwind.
 
--[Portafolio-CV-Astro](https://mfdp10.github.io/portafolio-cv-astro-tailwind/)
+-[Portafolio-CV-Astro-Tailwind](https://mfdp10.github.io/portafolio-cv-astro-tailwind/)
 
 # Astro Starter Kit: Minimal
 
