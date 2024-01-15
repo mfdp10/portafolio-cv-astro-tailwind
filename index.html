@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Hola bienvenid@ a mi Portafolio Profesional hecho en Astro, soy Mauricio Di Paolo, Desarrollador Web"
+    />
+    <title>Portafolio CV - Astro</title>
+    <link rel="canonical" href="https://mfdp10.github.io/portafolio-cv-astro" />
+    <link rel="favicon" href="https://mfdp10.github.io/portafolio-cv-astro/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="https://mfdp10.github.io/portafolio-cv-astro/favicon.png" />
+    <meta name="theme-color" content="#FF8F1E" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" name="twitter:title" content="Portafolio CV - Mauricio Di Paolo" />
+    <meta
+      property="og:description"
+      name="twitter:description"
+      content="Hola bienvenid@ a mi Portafolio Profesional, soy Mauricio Di Paolo, Desarrollador Web"
+    />
+    <meta
+      property="og:image"
+      name="twitter:image"
+      content="https://mfdp10.github.io/portafolio-cv-astro/assets/hero-image-home.jpg"
+    />
+    <meta property="og:url" name="twitter:url" content="https://mfdp10.github.io/portafolio-cv-astro" />
+    <link rel="stylesheet" href="/portafolio-cv-astro-tailwind/astro/index.yFSXNVnU.css" />
+    <script type="module">
+      ((o) => {
+        const s = o.querySelector(".menu-btn"),
+          e = o.querySelector(".menu");
+        s.addEventListener("click", (n) => {
+          s.firstElementChild.classList.toggle("hidden"),
+            s.lastElementChild.classList.toggle("hidden"),
+            e.classList.toggle("opacity-100"),
+            e.classList.toggle("pointer-events-auto");
+        }),
+          o.addEventListener("click", (n) => {
+            if (!n.target.matches(".menu a")) return !1;
+            s.firstElementChild.classList.remove("hidden"),
+              s.lastElementChild.classList.add("hidden"),
+              e.classList.remove("opacity-100"),
+              e.classList.remove("pointer-events-auto"),
+              e.classList.add("opacity-0"),
+              e.classList.add("pointer-events-none");
+          });
+      })(document);
+      ((o) => {
+        const s = o.querySelector(".contact-form"),
+          e = o.querySelector(".contact-form-loader"),
+          n = o.querySelector(".contact-form-response");
+        s.addEventListener("submit", (a) => {
+          a.preventDefault(),
+            e.classList.remove("hidden"),
+            fetch("https://localhost/ajax/mfdp10@gmail.com", { method: "POST", body: new FormData(a.target) })
+              .then((t) => (t.ok ? t.json() : Promise.reject(t)))
+              .then((t) => {
+                console.log(t), (location.hash = "#gracias"), s.reset();
+              })
+              .catch((t) => {
+                console.log(t);
+                let l = t.statusText || "Ocurrió un error al enviar, intenta nuevamente";
+                n.querySelector("h3").innerHTML = `Error ${t.status}: ${l}`;
+              })
+              .finally(() => {
+                e.classList.add("hidden"),
+                  setTimeout(() => {
+                    location.hash = "#close";
+                  }, 3e3);
+              });
+        });
+      })(document);
+    </script>
+  </head>
+  <body>
+    <header
+      class="fixed left-0 bottom-0 p-4 w-screen z-[999] h-16 bg-slate-900 text-white lg:sticky lg:top-0 lg:p-2 lg:h-14"
+    >
+      <section class="mx-auto max-w-6xl flex justify-between items-center">
+        <div class="text-amber-500 font-bold text-3xl no-underline">
+          <a href="/portafolio-cv-astro-tailwind">Mauricio Di Paolo</a>
+        </div>
+        <button
+          class="menu-btn outline outline-1 outline-offset-4 outline-amber-500 border-0 w-6 h-6 border-none rounded-sm cursor-pointer bg-slate-900 lg:hidden"
+        >
+          <svg class="fill-amber-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M4 6H20V8H4zM4 11H20V13H4zM4 16H20V18H4z"></path>
+          </svg>
+          <svg
+            class="fill-amber-500 hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z"
+            ></path>
+          </svg>
+        </button>
+        <nav
+          class="menu flex fixed left-0 bottom-16 w-screen flex-col bg-slate-900 opacity-0 pointer-events-none transition-opacity lg:static lg:w-auto lg:flex-row lg:opacity-100 lg:pointer-events-auto"
+        >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#inicio"
+            >Inicio</a
+          >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#acerca"
+            >Acerca</a
+          >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#servicios"
+            >Servicios</a
+          >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#trabajos"
+            >Trabajos</a
+          >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#opiniones"
+            >Opiniones</a
+          >
+          <a
+            class="p-4 text-2xl font-bold text-center no-underline text-amber-500 hover:text-white hover:bg-amber-500 transition-colors duration-500 ease-in-out lg:px-4 lg:py-0 lg:hover:bg-transparent"
+            href="#contacto"
+            >Contacto</a
+          >
+        </nav>
+      </section>
+    </header>
+    <section id="inicio" class="home">
+      <article
+        class="hero-image bg-fixed bg-no-repeat bg-center bg-cover"
+        style="background-image: url('/portafolio-cv-astro-tailwind/assets/hero-image-home.jpg')"
+      >
+        <aside
+          class="hero-image-opacity w-screen min-h-screen flex justify-center items-center text-center"
+          style="background-color: rgba(0, 0, 0, 0.5)"
+        >
+          <div class="hero-image-content w-screen min-w-80">
+            <h2 class="hero-image-title text-5xl font-bold" style="color: white">Bienvenid@s<br />a mi sitio</h2>
+            <a
+              href="#contacto"
+              class="btn w-52 p-4 inline-block rounded-lg font-bold text-center no-underline text-white bg-amber-500"
+              >CONTÁCTAME</a
+            >
+          </div>
+        </aside>
+      </article>
+    </section>
+    <section
+      id="acerca"
+      class="about section container full-lg-screen content-center py-8 px-4 mx-auto lg:grid lg:grid-cols-3 lg:gap-8 lg:justify-between lg:w-full min-h-screen"
+    >
+      <article class="text-lg-right lg:text-right mb-8">
+        <aside class="text-center text-lg-right lg:text-right">
+          <h1>Mauricio Di Paolo</h1>
+          <h5>programador y diseñador <i>web</i></h5>
+        </aside>
+        <p>
+          Allá por el año 2002 he comenzado a incursionar en el área del desarrollo <i>web</i>. Con mucha iniciativa y
+          voluntad autodidacta aprovechándome de las bondades de Internet.
+        </p>
+        <p>
+          He trabajado en una tienda de informática creando contenidos orientado al <i>Frontend</i>, pero también hago
+          las veces de <i>Backend</i>.
+        </p>
+        <p>
+          Me gusta la maquetación y la interactividad que ofrecen las interfaces
+          <i>web</i>, creando código limpio para la optimización, un buen posicionamiento y el rendimiento de los sitios
+          y aplicaciones <i>web</i>.
+        </p>
+        <p>
+          También cuento con experiencia en el área de <i>Social Media</i>, <i>Marketing</i> de Contenidos y <i>SEO</i>.
+        </p>
+        <div class="text-center text-lg-left lg:text-left">
+          <a
+            class="btn w-52 p-4 inline-block rounded-lg font-bold text-center no-underline text-white bg-amber-500"
+            href="https://mfdp10.github.io/portafolio-cv-astro-tailwind/assets/mauricio-di-paolo-cv.pdf"
+            target="_blank"
+            rel="noopener"
+            >DESCARGA MI CV</a
+          >
+        </div>
+      </article>
+      <article class="mb-8">
+        <img
+          class="grayscale rounded-lg"
+          src="/portafolio-cv-astro-tailwind/assets/mauricio-di-paolo.jpg"
+          alt="Mauricio Di Paolo"
+        />
+      </article>
+      <article>
+        <h2 class="text-center text-lg-left lg:text-left">Mis Habilidades</h2>
+        <div class="progress my-4 mx-auto">
+          <p class="m-0 flex justify-between text-sm">
+            <b>Desarrollo <i>Web Frontend</i></b> <b>80%</b>
+          </p>
+          <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-500">
+            <div
+              class="h-4 bg-slate-900 text-xs font-medium text-amber-500 text-center p-0.5 leading-none rounded-full"
+              style="width: 80%"
+            ></div>
+          </div>
+        </div>
+        <div class="progress my-4 mx-auto">
+          <p class="m-0 flex justify-between text-sm">
+            <b>Diseño <i>Web</i></b> <b>80%</b>
+          </p>
+          <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-500">
+            <div
+              class="h-4 bg-slate-900 text-xs font-medium text-amber-500 text-center p-0.5 leading-none rounded-full"
+              style="width: 80%"
+            ></div>
+          </div>
+        </div>
+        <div class="progress my-4 mx-auto">
+          <p class="m-0 flex justify-between text-sm">
+            <b><i>WPO</i> y <i>SEO</i></b> <b>75%</b>
+          </p>
+          <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-500">
+            <div
+              class="h-4 bg-slate-900 text-xs font-medium text-amber-500 text-center p-0.5 leading-none rounded-full"
+              style="width: 75%"
+            ></div>
+          </div>
+        </div>
+        <div class="progress my-4 mx-auto">
+          <p class="m-0 flex justify-between text-sm">
+            <b>Desarrollo <i>Web Backend</i></b> <b>70%</b>
+          </p>
+          <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-500">
+            <div
+              class="h-4 bg-slate-900 text-xs font-medium text-amber-500 text-center p-0.5 leading-none rounded-full"
+              style="width: 70%"
+            ></div>
+          </div>
+        </div>
+        <div class="progress my-4 mx-auto">
+          <p class="m-0 flex justify-between text-sm">
+            <b><i>Social Media</i> y <i>Marketing</i> de Contenidos</b> <b>60%</b>
+          </p>
+          <div class="w-full h-4 mb-4 bg-gray-200 rounded-full dark:bg-gray-500">
+            <div
+              class="h-4 bg-slate-900 text-xs font-medium text-amber-500 text-center p-0.5 leading-none rounded-full"
+              style="width: 60%"
+            ></div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section id="servicios" class="services section bg-gray-200">
+      <div
+        class="container full-lg-screen mx-auto grid grid-cols-1 justify-between content-center w-full min-h-screen sm:grid-cols-2 lg:grid-cols-3 lg:w-full lg:min-h-screen"
+      >
+        <h2 class="section-title grid sm:col-span-2 lg:col-span-3">Mis Servicios</h2>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M15.6034 24H16.4022V22.5H15.6121C15.3661 22.4955 13.2067 22.3702 13.2067 19.5C13.2067 18.0052 12.6755 17.0655 12.0068 16.5C12.6755 15.9345 13.2067 14.9948 13.2067 13.5C13.2067 10.6298 15.3661 10.5045 15.6034 10.5H16.4022V9H15.6018C14.2205 9.003 11.6089 9.948 11.6089 13.5C11.6089 15.6 10.2684 15.7425 10 15.75L10.0112 17.25C10.0767 17.25 11.6089 17.2755 11.6089 19.5C11.6089 23.052 14.2205 23.997 15.6034 24ZM25.9888 15.75C25.9233 15.75 24.3911 15.7245 24.3911 13.5C24.3911 9.948 21.7795 9.003 20.3966 9H19.5978V10.5H20.3879C20.6339 10.5045 22.7933 10.6298 22.7933 13.5C22.7933 14.9948 23.3245 15.9345 23.9932 16.5C23.3245 17.0655 22.7933 18.0052 22.7933 19.5C22.7933 22.3702 20.6339 22.4955 20.3966 22.5H19.5978V24H20.3982C21.7795 23.997 24.3911 23.052 24.3911 19.5C24.3911 17.4 25.7316 17.2575 26 17.25L25.9888 15.75Z"
+            ></path>
+          </svg>
+          <h3>Programación <i>Web</i></h3>
+          <p>
+            Desarrollo sitios y aplicaciones para plataformas <i>Web</i>. Te ayudo a construir tu proyecto de principio
+            a fin: <i>Frontend</i>, <i>Backend</i> y Base de Datos.
+          </p>
+        </article>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M23.6 10H12.4C11.6279 10 11 10.6279 11 11.4V19.1C11 19.8721 11.6279 20.5 12.4 20.5H17.3V21.9H15.2V23.3H20.8V21.9H18.7V20.5H23.6C24.3721 20.5 25 19.8721 25 19.1V11.4C25 10.6279 24.3721 10 23.6 10ZM12.4 17.7V11.4H23.6L23.6014 17.7H12.4Z"
+            ></path>
+          </svg>
+          <h3>Diseño Web</h3>
+          <p>
+            Prototipo y maqueto tus diseños estáticos y los convierto en increíbles sitios y aplicaciones <i>web</i>
+            responsivas, óptimas y accesibles.
+          </p>
+        </article>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M14.7143 11.625H16.5714V23H14.7143V11.625ZM18.4286 13.25H20.2857V23H18.4286V13.25ZM22.1429 10H24V23H22.1429V10ZM11 16.5H12.8571V23H11V16.5Z"
+            ></path>
+          </svg>
+          <h3><i>WPO</i></h3>
+          <p>
+            <i>Web Performance Optimization</i>, hago que tus sitios y aplicaciones <i>web</i> mejoren su tiempo de
+            carga y respuesta.
+          </p>
+        </article>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M18.6182 18.916C18.7148 19.0264 18.8295 19.1141 18.9557 19.1739C19.082 19.2337 19.2173 19.2644 19.354 19.2644C19.4907 19.2644 19.626 19.2337 19.7522 19.1739C19.8785 19.1141 19.9932 19.0264 20.0897 18.916L25.293 12.9735L23.8215 11.293L19.354 16.3952L16.9678 13.67C16.8712 13.5595 16.7565 13.4719 16.6303 13.4121C16.504 13.3523 16.3687 13.3215 16.232 13.3215C16.0953 13.3215 15.96 13.3523 15.8338 13.4121C15.7075 13.4719 15.5928 13.5595 15.4963 13.67L10.293 19.6124L11.7645 21.293L16.232 16.1908L18.6182 18.916Z"
+            ></path>
+          </svg>
+          <h3><i>SEO</i></h3>
+          <p>
+            <i>Search Engine Optimization</i>, optimizo tus sitios y aplicaciones <i>web</i> para que mejoren su
+            posición en los resultados de búsqueda.
+          </p>
+        </article>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M21.5716 9L20.8729 12.72H16.4587L17.0951 9.32889L15.3493 9L14.6507 12.72H10.8889V14.4978H14.3173L13.6498 18.0533H10V19.8311H13.3164L12.6818 23.2133L14.4284 23.5413L15.1253 19.8311H19.5396L18.9049 23.2133L20.6516 23.5413L21.3476 19.8311H25.1111V18.0533H21.6809L22.3484 14.4978H26V12.72H22.6818L23.3182 9.32889L21.5716 9ZM19.872 18.0533H15.4587L16.1262 14.4978H20.5404L19.872 18.0533Z"
+            ></path>
+          </svg>
+          <h3><i>SMO</i></h3>
+          <p>
+            <i>Social Media Optimization</i> y <i>Marketing</i> de Contenidos, te ayudo a elegir los canales digitales
+            correctos para llegar tu audiencia ideal.
+          </p>
+        </article>
+        <article class="service-card my-4 mx-auto p-4 text-center grid place-items-center">
+          <svg
+            class="fill-amber-500 mb-5"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.824 3.37891C12.933 3.37891 8.688 6.17591 6.551 10.2809C5.343 10.7519 4.311 11.5859 3.586 12.6519C2.082 13.1749 1 14.6219 1 16.3269C1 18.0319 2.082 19.4789 3.586 20.0019C4.311 21.0679 5.343 21.9009 6.551 22.3729C8.689 26.4769 12.934 29.2749 17.824 29.2749C24.862 29.2749 30.568 23.4769 30.568 16.3269C30.568 9.17591 24.862 3.37891 17.824 3.37891ZM17.824 26.6859C14.569 26.6859 11.671 25.1379 9.804 22.7269C8.892 21.5479 8.227 20.1629 7.886 18.6529C7.717 17.9049 7.626 17.1279 7.626 16.3279C7.626 15.5279 7.717 14.7509 7.886 14.0039C8.227 12.4929 8.892 11.1079 9.804 9.92991C11.671 7.51891 14.568 5.97091 17.824 5.97091C23.455 5.97091 28.019 10.6079 28.019 16.3289C28.019 22.0499 23.454 26.6859 17.824 26.6859Z"
+            ></path>
+            <path
+              d="M24.9881 17.2747L23.6924 10.1487C23.6338 9.82625 23.4639 9.5346 23.2123 9.32466C22.9606 9.11472 22.6432 8.99981 22.3155 9H13.6845C13.3565 8.99998 13.039 9.11511 12.7872 9.3253C12.5354 9.53549 12.3654 9.82739 12.3069 10.1501L11.0119 17.2747L11.0252 17.2768C11.0168 17.3188 11 17.3566 11 17.4V20.9C11 21.6721 11.6279 22.3 12.4 22.3H23.6C24.3721 22.3 25 21.6721 25 20.9V17.4C25 17.3559 24.9832 17.3188 24.9755 17.2768L24.9881 17.2747ZM13.6845 10.4H22.3162L23.4621 16.7H12.5386L13.6845 10.4ZM12.4 20.9V18.1H23.6L23.6014 20.9H12.4Z"
+            ></path>
+            <path d="M21.5 18.8H22.9V20.2H21.5V18.8ZM19.4 18.8H20.8V20.2H19.4V18.8Z"></path>
+          </svg>
+          <h3><i>Web Hosting</i></h3>
+          <p>
+            ¿No cuentas con dominio y hospedaje <i>web</i> para tu proyecto? No te preocupes de esas cosas técnicas me
+            encargo yo.
+          </p>
+        </article>
+      </div>
+    </section>
+    <section id="trabajos" class="portfolio section py-8 px-4">
+      <div class="container full-lg-screen mx-auto grid sm:grid-cols-2 lg:grid-cols-3 lg:w-full">
+        <h2 class="section-title sm:col-span-2 lg:col-span-3">Mis Trabajos</h2>
+        <a href="#trabajo-1" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-1.jpg" alt="Trabajo 1" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>Inmobiliaria Zafira</h3>
+              <p>
+                Inmobiliaria Zafira es una empresa del sector inmobiliario en San Fulgencio, provincia de Alicante. Pone
+                a tu disposición servicios de compra, venta y alquiler de inmuebles. Te atenderán en Parque Nervión, 141
+                SAN FULGENCIO, ALICANTE
+              </p>
+            </div>
+          </aside>
+        </a>
+        <a href="#trabajo-2" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-2.jpg" alt="Trabajo 2" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>Perfect Properties Spain</h3>
+              <p>
+                Agentes inmobiliarios ubicados en la Costa Blanca y la Costa Cálida, Perfect Property cubre toda la
+                Costa Blanca, tanto el norte como el sur y el Mar Menor. Disponen de todo tipo de inmuebles desde villas
+                nuevas y de reventa, adosados ​​y apartamentos, solares y proyectos urbanísticos.
+              </p>
+            </div>
+          </aside>
+        </a>
+        <a href="#trabajo-3" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-3.jpg" alt="Trabajo 3" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>Restaurante La Caballería</h3>
+              <p>
+                La Caballería nace en Mayo del 1999 con la idea de fomentar la cultura y gusto de la cocina tradicional
+                argentina en su expresión más sencilla: la carne.
+              </p>
+            </div>
+          </aside>
+        </a>
+        <a href="#trabajo-4" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-4.jpg" alt="Trabajo 4" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>AlojaT</h3>
+              <p>
+                Sitio diseñado para la gestión de dominios en internet y el alojamiento especializado. Gestión de DNS.
+              </p>
+            </div>
+          </aside>
+        </a>
+        <a href="#trabajo-5" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-5.jpg" alt="Trabajo 5" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>Electrónica y Antenas Negri, SL</h3>
+              <p>
+                Empresa Instaladora SAT-TDT e I.C.T. 546. Empresa creada en Junio de 1.994 por parte de Juan Carlos
+                Puigcerver García y su señora Teresa Aldeguer Hernández debido a su afán emprendedor y de haber estado
+                asociado a otras empresas si tener reconocimiento en sus trabajos de su leal saber y entender.
+              </p>
+            </div>
+          </aside>
+        </a>
+        <a href="#trabajo-6" class="portfolio-card relative w-full my-0 mx-auto block group">
+          <img class="w-full object-cover" src="/portafolio-cv-astro-tailwind/assets/portfolio-6.jpg" alt="Trabajo 6" />
+          <aside
+            class="portfolio-card-info absolute top-0 left-0 w-full h-full p-4 bg-amber-500 opacity-0 text-white pointer-events-none group-hover:opacity-80 hover:pointer-events-auto"
+          >
+            <div class="p-4 w-full h-full border border-white rounded">
+              <h3>Tasks</h3>
+              <p>
+                Proyecto propio para la gestión de avisos de servicios. Gestión de artículos, categorías, comunidades de
+                propietarios, usuarios, clientes, partes de trabajo.
+              </p>
+            </div>
+          </aside>
+        </a>
+      </div>
+    </section>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-1"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-1.jpg" alt="Trabajo 1" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">Inmobiliaria Zafira</h3>
+            <p>
+              Inmobiliaria Zafira es una empresa del sector inmobiliario en San Fulgencio, provincia de Alicante. Pone a
+              tu disposición servicios de compra, venta y alquiler de inmuebles. Te atenderán en Parque Parque Nervión,
+              141 SAN FULGENCIO, ALICANTE
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>Inmobiliaria Zafira</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>24/12/2008</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>Web dinámica</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small
+                ><a href="https://www.zafiraspain.com/" target="_blank" rel="noopener"
+                  >https://www.zafiraspain.com/</a
+                ></small
+              >
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-2"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-2.jpg" alt="Trabajo 2" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">Perfect Properties Spain</h3>
+            <p>
+              Agentes inmobiliarios ubicados en la Costa Blanca y la Costa Cálida, Perfect Property cubre toda la Costa
+              Blanca, tanto el norte como el sur y el Mar Menor. Disponen de todo tipo de inmuebles desde villas nuevas
+              y de reventa, adosados ​​y apartamentos, solares y proyectos urbanísticos.
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>Perfect Properties Spain</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>24/12/2009</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>Web dinámica con buscador</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small
+                ><a href="https://www.perfectpropertyspain.com" target="_blank" rel="noopener"
+                  >www.perfectpropertyspain.com</a
+                ></small
+              >
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-3"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-3.jpg" alt="Trabajo 3" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">Restaurante La Caballería</h3>
+            <p>
+              La Caballería nace en Mayo del 1999 con la idea de fomentar la cultura y gusto de la cocina tradicional
+              argentina en su expresión más sencilla: la carne.
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>La Caballería</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>05/08/2010</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>Web dinámica en ASP</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small
+                ><a href="https://www.lacaballeriaguardamar.com" target="_blank" rel="noopener"
+                  >www.lacaballeriaguardamar.com</a
+                ></small
+              >
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-4"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-4.jpg" alt="Trabajo 4" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">AlojaT</h3>
+            <p>
+              Sitio diseñado para la gestión de dominios en internet y el alojamiento especializado. Gestión de DNS.
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>Proyecto propio</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>10/02/2011</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>Web dinámica</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small><a href="https://alojat.com" target="_blank" rel="noopener">https://alojat.com</a></small>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-5"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-5.jpg" alt="Trabajo 5" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">Electrónica y Antenas Negri, SL</h3>
+            <p>
+              Empresa Instaladora SAT-TDT e I.C.T. 546. Empresa creada en Junio de 1.994 por parte de Juan Carlos
+              Puigcerver García y su señora Teresa Aldeguer Hernández debido a su afán emprendedor y de haber estado
+              asociado a otras empresas si tener reconocimiento en sus trabajos de su leal saber y entender.
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>Electrónica y Antenas Negri, SL</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>21/03/2012</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>Web dinámica + Blog</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small><a href="https://www.negrisl.es" target="_blank" rel="noopener">https://www.negrisl.es</a></small>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <article
+      class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+      id="trabajo-6"
+    >
+      <div class="modal-content relative">
+        <a href="#cerrar" class="modal-close absolute top-4 right-4">
+          <svg
+            class="w-12 h-12 fill-amber-500"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M16.207,14.793l-1.414,1.414L12,13.414 l-2.793,2.793l-1.414-1.414L10.586,12L7.793,9.207l1.414-1.414L12,10.586l2.793-2.793l1.414,1.414L13.414,12L16.207,14.793z"
+            ></path>
+          </svg>
+        </a>
+        <article class="portfolio-modal p-4 max-w-96 flex flex-col md:max-w-4xl md:flex-row bg-white">
+          <img src="/portafolio-cv-astro-tailwind/assets/portfolio-6.jpg" alt="Trabajo 6" />
+          <div class="portfolio-info ml-4 self-center">
+            <h3 class="border-b-2 border-amber-500 my-4 mx-auto py-2 px-0">Tasks</h3>
+            <p>
+              Proyecto propio para la gestión de avisos de servicios. Gestión de artículos, categorías, comunidades de
+              propietarios, usuarios, clientes, partes de trabajo.
+            </p>
+            <aside class="portfolio-details grid grid-cols-[40%_60%] auto-rows-[2rem]">
+              <small><b class="text-amber-500">CLIENTE:</b></small> <small>Proyecto propio</small>
+              <small><b class="text-amber-500">FECHA:</b></small> <small>15/11/2015</small>
+              <small><b class="text-amber-500">TIPO:</b></small> <small>ASP.NET + MSSQL</small>
+              <small><b class="text-amber-500">ENLACE:</b></small>
+              <small
+                ><a href="https://tasksmanager.es" target="_blank" rel="noopener">https://tasksmanager.es</a></small
+              >
+            </aside>
+          </div>
+        </article>
+      </div>
+    </article>
+    <section id="opiniones" class="comments">
+      <article
+        class="hero-image bg-scroll bg-no-repeat bg-center bg-cover"
+        style="background-image: url('/portafolio-cv-astro-tailwind/assets/hero-image-customers.jpg')"
+      >
+        <aside
+          class="hero-image-opacity w-full min-h-screen flex justify-center items-center text-center bg-white bg-opacity-50"
+        >
+          <div class="hero-image-content w-screen min-w-80">
+            <div class="container full-lg-screen mx-auto">
+              <h2 class="section-title">Opiniones</h2>
+              <article
+                class="carousel my-8 mx-auto py-8 px-0 max-w-3xl text-center overflow-hidden bg-white bg-opacity-50"
+              >
+                <input hidden type="radio" name="slides" id="slide-1" checked />
+                <input hidden type="radio" name="slides" id="slide-2" />
+                <input hidden type="radio" name="slides" id="slide-3" />
+                <input hidden type="radio" name="slides" id="slide-4" />
+                <ul class="slides pl-0 w-[400%] flex list-none mb-2 transition-transform ease-in-out duration-500">
+                  <li class="slide w-full text-center my-0 mx-auto">
+                    <img
+                      class="avatar rounded-full w-36 h-36 mx-auto"
+                      src="/portafolio-cv-astro-tailwind/assets/customer-1.jpg"
+                      alt="Cliente 1"
+                    />
+                    <blockquote>
+                      "Estamos muy contentos con la web. Hemos podido agregar todo nuestro catálogo de servicios. Poco a
+                      poco estamos apareciendo en los primeros resultados de búsqueda en nuestro sector. Buen trabajo"
+                    </blockquote>
+                    <h3 class="text-amber-500">Electrónica Negri</h3>
+                    <h6>Gerente</h6>
+                  </li>
+                  <li class="slide w-full">
+                    <img
+                      class="avatar rounded-full w-36 h-36 mx-auto"
+                      src="/portafolio-cv-astro-tailwind/assets/customer-2.jpg"
+                      alt="Cliente 2"
+                    />
+                    <blockquote>
+                      "Sabemos en las manos de quien no encomendamos. Hemos acertado con la elección. Muy profesional."
+                    </blockquote>
+                    <h3 class="text-amber-500">La Caballería</h3>
+                    <h6>Dueño</h6>
+                  </li>
+                  <li class="slide w-full">
+                    <img
+                      class="avatar rounded-full w-36 h-36 mx-auto"
+                      src="/portafolio-cv-astro-tailwind/assets/customer-1.jpg"
+                      alt="Cliente 1"
+                    />
+                    <blockquote>
+                      "Estamos muy contentos con la web. Hemos podido agregar todo nuestro catálogo de servicios. Poco a
+                      poco estamos apareciendo en los primeros resultados de búsqueda en nuestro sector. Buen trabajo"
+                    </blockquote>
+                    <h3 class="text-amber-500">Electrónica Negri</h3>
+                    <h6>Gerente</h6>
+                  </li>
+                  <li class="slide w-full">
+                    <img
+                      class="avatar rounded-full w-36 h-36 mx-auto"
+                      src="/portafolio-cv-astro-tailwind/assets/customer-2.jpg"
+                      alt="Cliente 2"
+                    />
+                    <blockquote>
+                      "Sabemos en las manos de quien no encomendamos. Hemos acertado con la elección. Muy profesional."
+                    </blockquote>
+                    <h3 class="text-amber-500">La Caballería</h3>
+                    <h6>Dueño</h6>
+                  </li>
+                </ul>
+                <aside class="slides-nav text-center">
+                  <label
+                    class="border-2 cursor-pointer my-0 mx-1 border-slate-900 w-3 h-3 inline-block rounded-full"
+                    for="slide-1"
+                    id="dot-1"
+                  ></label>
+                  <label
+                    class="border-2 cursor-pointer my-0 mx-1 border-slate-900 w-3 h-3 inline-block rounded-full"
+                    for="slide-2"
+                    id="dot-2"
+                  ></label>
+                  <label
+                    class="border-2 cursor-pointer my-0 mx-1 border-slate-900 w-3 h-3 inline-block rounded-full"
+                    for="slide-3"
+                    id="dot-3"
+                  ></label>
+                  <label
+                    class="border-2 cursor-pointer my-0 mx-1 border-slate-900 w-3 h-3 inline-block rounded-full"
+                    for="slide-4"
+                    id="dot-4"
+                  ></label>
+                </aside>
+              </article>
+            </div>
+          </div>
+        </aside>
+      </article>
+    </section>
+    <section id="contacto" class="contact section py-8 px-4">
+      <div class="container mx-auto max-w-7xl">
+        <h2 class="section-title">Contacto</h2>
+        <article class="contact-cards grid sm:grid-cols-2 lg:grid-cols-4">
+          <aside class="contact-card my-4 mx-auto p-4 w-full h-36 flex flex-col justify-around items-center shadow-xl">
+            <svg class="w-8 h-8 fill-amber-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M26.759 18.0625L24.559 15.3125C24.4559 15.1837 24.3252 15.0798 24.1765 15.0084C24.0278 14.937 23.8649 14.8999 23.6999 14.9H17.1V12.7H23.6999C24.9132 12.7 25.8999 11.7133 25.8999 10.5V7.2C25.8999 5.9867 24.9132 5 23.6999 5H8.30007C8.13511 4.99994 7.97225 5.03698 7.82354 5.10838C7.67483 5.17979 7.54408 5.28372 7.44098 5.4125L5.241 8.1625C5.08499 8.35768 5 8.60013 5 8.85C5 9.09987 5.08499 9.34232 5.241 9.5375L7.44098 12.2875C7.54408 12.4163 7.67483 12.5202 7.82354 12.5916C7.97225 12.663 8.13511 12.7001 8.30007 12.7H14.9V14.9H8.30007C7.08678 14.9 6.10009 15.8867 6.10009 17.1V20.4C6.10009 21.6133 7.08678 22.6 8.30007 22.6H14.9V27H17.1V22.6H23.6999C23.8649 22.6001 24.0278 22.563 24.1765 22.4916C24.3252 22.4202 24.4559 22.3163 24.559 22.1875L26.759 19.4375C26.915 19.2423 27 18.9999 27 18.75C27 18.5001 26.915 18.2577 26.759 18.0625ZM7.50918 8.85L8.82807 7.2H23.6999L23.7021 10.5H8.82807L7.50918 8.85ZM23.1719 20.4H8.30007V17.1H23.1719L24.4919 18.75L23.1719 20.4Z"
+              ></path>
+            </svg>
+            <h5>UBICACIÓN</h5>
+            <small>Guardamar del Segura, (Alicante) España</small>
+          </aside>
+          <aside class="contact-card my-4 mx-auto p-4 w-full h-36 flex flex-col justify-around items-center shadow-xl">
+            <svg class="w-8 h-8 fill-amber-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21.7143 5H10.2857C9.02514 5 8 6.02514 8 7.28571V25.5714C8 26.832 9.02514 27.8571 10.2857 27.8571H21.7143C22.9749 27.8571 24 26.832 24 25.5714V7.28571C24 6.02514 22.9749 5 21.7143 5ZM10.2857 22.1417V8.42857H21.7143L21.7166 22.1417H10.2857Z"
+              ></path>
+            </svg>
+            <h5>TELÉFONO</h5>
+            <small><a href="tel:626908953">(+34) 626 90 89 53</a></small>
+          </aside>
+          <aside class="contact-card my-4 mx-auto p-4 w-full h-36 flex flex-col justify-around items-center shadow-xl">
+            <svg class="w-8 h-8 fill-amber-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M23.9 8H9.20001C8.04186 8 7.10001 8.94185 7.10001 10.1V15.35H9.20001V12.2L15.92 17.24C16.1018 17.3762 16.3229 17.4497 16.55 17.4497C16.7772 17.4497 16.9982 17.3762 17.18 17.24L23.9 12.2V21.65H15.5V23.75H23.9C25.0582 23.75 26 22.8081 26 21.65V10.1C26 8.94185 25.0582 8 23.9 8ZM16.55 15.0875L9.89931 10.1H23.2007L16.55 15.0875Z"
+              ></path>
+              <path
+                d="M5 16.4H12.35V18.5H5V16.4ZM7.1 19.55H13.4V21.65H7.1V19.55ZM10.25 22.7H14.45V24.8H10.25V22.7Z"
+              ></path>
+            </svg>
+            <h5>EMAIL</h5>
+            <small><a href="mailto:mfdp10@gmail.com">mfdp10@gmail.com</a></small>
+          </aside>
+          <aside class="contact-card my-4 mx-auto p-4 w-full h-36 flex flex-col justify-around items-center shadow-xl">
+            <svg class="w-8 h-8 fill-amber-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.018,3.815L15.232,8h-4.966l0.716-3.815L9.018,3.815L8.232,8H4v2h3.857l-0.751,4H3v2h3.731l-0.714,3.805l1.965,0.369 L8.766,16h4.966l-0.714,3.805l1.965,0.369L15.766,16H20v-2h-3.859l0.751-4H21V8h-3.733l0.716-3.815L16.018,3.815z M14.106,14H9.141 l0.751-4h4.966L14.106,14z"
+              ></path>
+            </svg>
+            <h5>MIS REDES</h5>
+            <small class="social-media flex">
+              <a href="https://twitter.com/mfdp10" target="_blank" rel="noopener" class="p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path
+                    d="M19.633,7.997c0.013,0.175,0.013,0.349,0.013,0.523c0,5.325-4.053,11.461-11.46,11.461c-2.282,0-4.402-0.661-6.186-1.809	c0.324,0.037,0.636,0.05,0.973,0.05c1.883,0,3.616-0.636,5.001-1.721c-1.771-0.037-3.255-1.197-3.767-2.793	c0.249,0.037,0.499,0.062,0.761,0.062c0.361,0,0.724-0.05,1.061-0.137c-1.847-0.374-3.23-1.995-3.23-3.953v-0.05	c0.537,0.299,1.16,0.486,1.82,0.511C3.534,9.419,2.823,8.184,2.823,6.787c0-0.748,0.199-1.434,0.548-2.032	c1.983,2.443,4.964,4.04,8.306,4.215c-0.062-0.3-0.1-0.611-0.1-0.923c0-2.22,1.796-4.028,4.028-4.028	c1.16,0,2.207,0.486,2.943,1.272c0.91-0.175,1.782-0.512,2.556-0.973c-0.299,0.935-0.936,1.721-1.771,2.22	c0.811-0.088,1.597-0.312,2.319-0.624C21.104,6.712,20.419,7.423,19.633,7.997z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="https://github.com/mfdp10" target="_blank" rel="noopener" class="p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12.026,2c-5.509,0-9.974,4.465-9.974,9.974c0,4.406,2.857,8.145,6.821,9.465	c0.499,0.09,0.679-0.217,0.679-0.481c0-0.237-0.008-0.865-0.011-1.696c-2.775,0.602-3.361-1.338-3.361-1.338	c-0.452-1.152-1.107-1.459-1.107-1.459c-0.905-0.619,0.069-0.605,0.069-0.605c1.002,0.07,1.527,1.028,1.527,1.028	c0.89,1.524,2.336,1.084,2.902,0.829c0.091-0.645,0.351-1.085,0.635-1.334c-2.214-0.251-4.542-1.107-4.542-4.93	c0-1.087,0.389-1.979,1.024-2.675c-0.101-0.253-0.446-1.268,0.099-2.64c0,0,0.837-0.269,2.742,1.021	c0.798-0.221,1.649-0.332,2.496-0.336c0.849,0.004,1.701,0.115,2.496,0.336c1.906-1.291,2.742-1.021,2.742-1.021	c0.545,1.372,0.203,2.387,0.099,2.64c0.64,0.696,1.024,1.587,1.024,2.675c0,3.833-2.33,4.675-4.552,4.922	c0.355,0.308,0.675,0.916,0.675,1.846c0,1.334-0.012,2.41-0.012,2.737c0,0.267,0.178,0.577,0.687,0.479	C19.146,20.115,22,16.379,22,11.974C22,6.465,17.535,2,12.026,2z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mauricio-fernando-di-paolo-flocco-638033172/"
+                target="_blank"
+                rel="noopener"
+                class="p-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path
+                    d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h16c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z M8.339,18.337H5.667	v-8.59h2.672V18.337z M7.003,8.574c-0.856,0-1.548-0.694-1.548-1.548s0.691-1.548,1.548-1.548c0.854,0,1.548,0.693,1.548,1.548	S7.857,8.574,7.003,8.574z M18.338,18.337h-2.669V14.16c0-0.996-0.018-2.277-1.388-2.277c-1.39,0-1.601,1.086-1.601,2.207v4.248	h-2.667v-8.59h2.56v1.174h0.037c0.355-0.675,1.227-1.387,2.524-1.387c2.704,0,3.203,1.778,3.203,4.092V18.337z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/mauriciofernandodipaoloflocco/"
+                target="_blank"
+                rel="noopener"
+                class="p-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path
+                    d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624	C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003	c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"
+                  ></path>
+                  <circle cx="16.806" cy="7.207" r="1.078"></circle>
+                  <path
+                    d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42	c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111	c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71	c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45	c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633	c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311	c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311	c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654	c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712	c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055	c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669	c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"
+                  ></path>
+                </svg>
+              </a>
+            </small>
+          </aside>
+        </article>
+        <form class="contact-form my-8 mx-auto p-4 max-w-4xl shadow-lg lg:grid lg:grid-cols-2 gap-4">
+          <input
+            class="p-2 my-4 mx-auto block w-full text-sm border-2 border-slate-900 rounded"
+            type="text"
+            name="name"
+            placeholder="Ingresa tu nombre *"
+            title="Nombre sólo acepta letras y espacios en blanco"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜüs]+$"
+            required
+          />
+          <input
+            class="p-2 my-4 mx-auto block w-full text-sm border-2 border-slate-900 rounded"
+            type="email"
+            name="email"
+            placeholder="Ingresa tu correo *"
+            title="Email incorrecto"
+            pattern="^[a-z0-9]+(.[_a-z0-9]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,15})$"
+            required
+          />
+          <textarea
+            name="comments"
+            cols="50"
+            rows="10"
+            placeholder="Déjame tus comentarios *"
+            required
+            class="p-2 my-4 mx-auto block w-full text-sm border-2 border-slate-900 rounded resize-none lg:col-span-2"
+          ></textarea>
+          <div class="contact-form-loader text-center lg:col-span-2 hidden">
+            <img class="mx-auto pb-4" src="/portafolio-cv-astro-tailwind/assets/my-loader.svg" alt="Enviando..." />
+          </div>
+          <input
+            class="btn p-2 my-4 mx-auto block mt-0 cursor-pointer border-0 bg-amber-500 text-white transition-opacity duration-500 ease-out hover:opacity-80 w-full sm:w-64 lg:col-span-2 rounded"
+            type="submit"
+            value="ENVIAR MENSAJE"
+          />
+        </form>
+        <article
+          id="gracias"
+          class="modal fixed z-[999] top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 pointer-events-none"
+        >
+          <div class="modal-content relative">
+            <article class="contact-form-response p-4 w-96 text-center bg-white">
+              <h3>
+                ¡Muchas Gracias!
+                <br />
+                Por tus comentarios
+              </h3>
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="mt-8 w-16 h-16 fill-amber-500 mx-auto"
+              >
+                <path
+                  d="M16 2C8.2804 2 2 8.2804 2 16C2 23.7196 8.2804 30 16 30C23.7196 30 30 23.7196 30 16C30 8.2804 23.7196 2 16 2ZM16 27.2C9.8246 27.2 4.8 22.1754 4.8 16C4.8 9.8246 9.8246 4.8 16 4.8C22.1754 4.8 27.2 9.8246 27.2 16C27.2 22.1754 22.1754 27.2 16 27.2Z"
+                ></path>
+                <path
+                  d="M19.9797 19.7864C19.4655 20.2704 18.8582 20.6573 18.1903 20.9262C16.988 21.4055 15.6466 21.4755 14.3956 21.1242C13.1447 20.7728 12.0619 20.0219 11.3324 19L9 20.4865C9.60833 21.3342 10.3823 22.0646 11.2803 22.6385C12.1942 23.2221 13.2211 23.6298 14.3021 23.8381C15.4229 24.054 16.5785 24.054 17.6994 23.8381C18.7802 23.6295 19.807 23.2219 20.7211 22.6385C21.1614 22.3569 21.582 22.0301 21.9674 21.6675C22.3501 21.3075 22.699 20.9089 23 20.4865L20.6676 19C20.4654 19.2823 20.2351 19.5456 19.9797 19.7864Z"
+                ></path>
+                <path
+                  d="M11 16C12.1046 16 13 15.1046 13 14C13 12.8954 12.1046 12 11 12C9.89543 12 9 12.8954 9 14C9 15.1046 9.89543 16 11 16Z"
+                ></path>
+                <path
+                  d="M21 16C22.1046 16 23 15.1046 23 14C23 12.8954 22.1046 12 21 12C19.8954 12 19 12.8954 19 14C19 15.1046 19.8954 16 21 16Z"
+                ></path>
+              </svg>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+    <footer class="mb-16 p-2 text-center text-white bg-amber-500 lg:mb-0">
+      <small>diseñado por <a href="#" target="_blank" rel="noopener">Mauricio Di Paolo</a></small>
+    </footer>
+  </body>
+</html>
